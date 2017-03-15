@@ -1,2 +1,7 @@
-<h1>Decks#index</h1>
-<p>Find me in app/views/decks/index.html.erb</p>
+<h1>Liste de decks</h1>
+<div>
+	<% @decks.each do |deck| %>
+		<p>-&nbsp;<%= deck.name %></p>
+	<% end %>
+</div>
+
