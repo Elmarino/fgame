@@ -1,7 +1,24 @@
 <h1>Liste de decks</h1>
 <div>
+	<%= simple_form_for @deck do |f| %>
+  <%= f.input :name %>
+  <%= f.input :speciality%>
+  <%= f.input :position %>
+  <%= f.input :place%>
+  <%= f.button :submit %>
+<% end %>
 	<% @decks.each do |deck| %>
-		<p>-&nbsp;<%= deck.name %></p>
+		<p>
+			-<a href="/decks/<%= deck.id %>"><%= deck.name %></a>
+		</p>
 	<% end %>
 </div>
 
+<h1>Choose your team</h1>
+<%= form_tag "/parties/show", method: "post" do %>
+	<% @decks.each do |deck| %>
+		<input type="radio" name="team" value="#{deck.id}"><%= deck.name %><br>
+	<% end %>
+	<br>
+	<input type="submit" value="Ajouter le joueur"/>
+<% end %>

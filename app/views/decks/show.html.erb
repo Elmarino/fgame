@@ -1,0 +1,11 @@
+<h1><%= @deck.name %></h1>
+
+<p>Voici la page présentant le deck</p>
+
+<% @joueursdeck.each do |joueur|%>
+<p>
+-<a href="/joueurs/<%= joueur.id %>"><%=joueur.name%></a>
+</p>
+<% end %>
+
+<p><a href="/decks">Retourner à la liste des decks</a></p>

@@ -10,12 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170315144533) do
+ActiveRecord::Schema.define(version: 20170322141252) do
 
   create_table "decks", force: :cascade do |t|
     t.string  "name"
     t.string  "speciality"
     t.integer "position"
+    t.string  "place"
+  end
+
+  create_table "joueurs", force: :cascade do |t|
+    t.string  "name"
+    t.integer "attack"
+    t.integer "defense"
+    t.string  "speciality"
+    t.integer "deck_id"
+    t.index ["deck_id"], name: "index_joueurs_on_deck_id"
   end
 
 end
