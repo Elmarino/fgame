@@ -1,0 +1,44 @@
+<h1 class="gtime">GAME TIME: </h1>
+<h2>
+	<span class="teams"><%=@deck_play.name%></span> 
+	<span class="vs">VS</span> 
+	<span class="teams"><%=@deck_against.name%></span>
+</h2>
+<div class="block-presentation">
+	<% @players_play.each do |joueur| %>
+		<div class="pres-players">
+			<p><%= joueur.name %></p>
+		</div>
+	<% end %>
+</div>
+<% #button_to 'Call Action', parties_show_path, class: 'button-versus' method: :post %>
+<div class="result">
+	<div class="points">
+	Your team's points:
+		<div class="counter" data-count="<%= @result_play %>">
+			0
+		</div>
+	</div>
+	<div class="points">
+	Opponent's points:
+		<div class="counter" data-count="<%= @result_against %>">
+			0
+		</div>
+	</div>
+</div>
+<div class="ready">
+	<figure>
+	  <div>
+	    <span>Click when your are ready</span>
+	    <span>JUMP BALL !</span>
+	  </div>
+	</figure>
+</div>
+<div class="block-presentation">
+	<% @players_against.each do |joueur| %>
+		<div class="pres-players">
+			<p><%= joueur.name %></p>
+		</div>
+	<% end %>
+</div>
+

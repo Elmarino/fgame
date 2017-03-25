@@ -1,2 +1,21 @@
-<h1>Parties#show</h1>
-<p>Find me in app/views/parties/show.html.erb</p>
+<h1>Préparation de votre deck</h1>
+<%=@deck_game.name%>
+<%@joueurs_game.each do |joueur|%>
+	<p>-<%= joueur.name %></p>
+<%end%>
+
+<h2>Selectionne tes joueurs</h2>
+
+<%= form_tag "/parties/play",class: 'checkbox-player', method: "post" do %>
+	<% @joueurs_game.each do |joueur| %>
+		<label>
+			<%=check_box_tag 'player_ids[]', joueur.id, false %>
+			<%=joueur.name%>
+		</label>
+		<br>
+	<% end %>
+	<br>
+	<input type="submit" value="Play !"/>
+<% end %>
+
+<p>Conseil: La défense est utile, hein :)</p>

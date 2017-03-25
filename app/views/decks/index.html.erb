@@ -1,12 +1,17 @@
-<h1>Liste de decks</h1>
-<div>
+<% if current_user.admin? %>
+<div class="create formulaire">
+<h1>Create a deck (team)</h1>
 	<%= simple_form_for @deck do |f| %>
-  <%= f.input :name %>
-  <%= f.input :speciality%>
-  <%= f.input :position %>
-  <%= f.input :place%>
-  <%= f.button :submit %>
+	<%= f.input :name, required: true %>
+	<%= f.input :speciality, required: true%>
+	<%= f.input :position, required: true %>
+	<%= f.input :place, required: true%>
+	<%= f.button :submit %>
+	<% end %>
+</div>
 <% end %>
+<div class="formulaire">
+	<h1>Index of decks</h1>
 	<% @decks.each do |deck| %>
 		<p>
 			-<a href="/decks/<%= deck.id %>"><%= deck.name %></a>
@@ -14,11 +19,13 @@
 	<% end %>
 </div>
 
+<div class="formulaire">
 <h1>Choose your team</h1>
 <%= form_tag "/parties/show", method: "post" do %>
 	<% @decks.each do |deck| %>
-		<input type="radio" name="team" value="#{deck.id}"><%= deck.name %><br>
+		<input type="radio" name="team" value="<%=deck.id%>"><%= deck.name %><br>
 	<% end %>
 	<br>
-	<input type="submit" value="Ajouter le joueur"/>
+	<input type="submit" value="Choose !"/>
 <% end %>
+</div>

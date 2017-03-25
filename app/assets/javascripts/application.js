@@ -14,3 +14,45 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function(){
+	var limit = 3;
+		$('.checkbox-player').on('change', function(evt) {
+		//alert(limit);
+		if($(this).siblings(':checked').length >= limit) {
+		   this.checked = false;
+		}
+	});
+
+	//Apparition Score du match
+
+	$("figure").on("click",function(){
+		$(".ready").slideToggle('500');
+		setTimeout(function(){
+			$('.points').slideToggle('1000');
+			$('.counter').each(function() {
+				var $this = $(this),
+				countTo = $this.attr('data-count');
+
+				$({ countNum: $this.text()}).animate({
+					countNum: countTo
+				},{
+					duration: 3000,
+					easing:'swing',
+					step: function() {
+					  $this.text(Math.floor(this.countNum));
+					},
+					complete: function() {
+					  $this.text(this.countNum);
+					  //alert('finished');
+					}
+				});  
+			});
+		}, 600);
+	});
+
+	//Apparition number of results for the game
+
+});
+
+

@@ -54,3 +54,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 #Gem pour les formulaires
 gem 'simple_form'
+
+#Gems pour gerer des utilisateur et les autorisations
+gem 'devise'
+gem 'cancancan'

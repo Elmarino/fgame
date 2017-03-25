@@ -1,5 +1,6 @@
 class JoueursController < ApplicationController
   before_action :set_joueur, only: [:show, :edit, :destroy]
+  before_filter :authenticate_user!, only: [:create, :destroy]
 
   def index
   	@joueurs = Joueur.all
@@ -20,7 +21,7 @@ class JoueursController < ApplicationController
   end
   def destroy
   	@joueur.destroy
-	redirect_to joueurs_path
+    redirect_to joueurs_path
   end
   def set_joueur
   	@joueur = Joueur.find(params[:id])
