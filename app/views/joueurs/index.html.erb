@@ -1,62 +1,42 @@
-<h1>Joueurs#index</h1>
-<table>
-	<tr>
-		<td>Name</td>
-		<td>Attack</td>
-		<td>Defense</td>
-		<td>Spéciality</td>
-		<td>Team</td>
-		<td>What to do with ?</td>
-	</tr>
-	<% @joueurs.each do |joueur|%>
+<h1>Liste des joueurs disponibles</h1>
+<div class="tableau">
+	<table>
 		<tr>
-			<td><%= joueur.name %> </td>
-			<td><%= joueur.attack %> </td>
-			<td><%= joueur.defense %> </td>
-			<td><%= joueur.speciality %> </td>
-			<td>
-				<%= link_to "#{@decks.find(joueur.deck_id).name}", "/decks/#{joueur.deck_id}"%>
-			</td>
-			<td>
-				<%= link_to 'Afficher', joueur%>
-				<%= link_to 'Editer', edit_joueur_path(joueur)
-				%>
-				<%= link_to 'Supprimer', joueur, method: :delete, data:{
-					confirm: 'Êtes-vous sûr(e) de vouloir supprimer ce joueur ?'
-					}
-				%>
-			</td>
+			<td>Name</td>
+			<td>Attack</td>
+			<td>Defense</td>
+			<td>Speciality</td>
+			<td>Team</td>
+			<% if current_user.admin? %>
+				<td>What to do with ?</td>
+			<% end %>
 		</tr>
-	<% end %>
-</table>
-
-<h1>Ajouter un joueur</h1>
-
-<%= form_tag "/joueurs", method: "post" do %>
-	<label for="name">Name:</label>
-	<input type="text" name="name" id="name" />
-
-	<label for="att">Attack:</label>
-	<input type="number" name="attack" id="att">
-
-	<label for="def">Defense:</label>
-	<input type="number" name="defense" id="def">
-
-	<label for="spe">Speciality:</label>
-	<select name="speciality" id="spe">
-		<option value="3pt shooting">3pt shooting</option>
-		<option value="defensive">defensive</option>
-		<option value="pass first">pass first</option>
-		<option value="all-around player">all-around player</option>
-		<option value="pump faker">pump faker</option>
-	</select>
-
-	<label for="team">Team:</label>
-	<select name="team" id="team">
-		<% @decks.each do |deck| %>
-			<option value="<%= deck.id %>"><%= deck.name %></option>
+		<% @joueurs.each do |joueur|%>
+			<tr>
+				<td><%= joueur.name %> </td>
+				<td><%= joueur.attack %> </td>
+				<td><%= joueur.defense %> </td>
+				<td><%= joueur.speciality %> </td>
+				<td>
+					<%= link_to "#{@decks.find(joueur.deck_id).name}", "/decks/#{joueur.deck_id}"%>
+				</td>
+				<% if current_user.admin? %>
+					<td>
+						<%= link_to 'Show', joueur%>
+						<%= link_to 'Edit', edit_joueur_path(joueur)
+						%>
+						<%= link_to 'Delete', joueur, method: :delete, data:{
+							confirm: 'Êtes-vous sûr(e) de vouloir supprimer ce joueur ?'
+							}
+						%>
+					</td>
+				<% end %>
+			</tr>
 		<% end %>
-	</select>
-	<br>
-	<input type="submit" value="Ajouter le joueur"/>
+	</table>
+</div>
+<% if current_user.admin? %>
+
+	<h1>Ajouter un joueur</h1>
+	<%= render 'formjoueurs' %>
 <% end %>

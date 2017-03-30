@@ -7,7 +7,6 @@ class DecksController < ApplicationController
   end
 
   def create
-
     @deck = Deck.new deck_params
     if @deck.save
       flash[:success] = "L\'équipe #{@deck.name} a bien été enregistrée."
@@ -26,13 +25,8 @@ class DecksController < ApplicationController
       )
   end
 
-
   def show
     @deck = Deck.find(params[:id])
     @joueursdeck = Joueur.where("deck_id= '#{params[:id]}'")
-  end
-  def update
-  end
-  def destroy
   end
 end

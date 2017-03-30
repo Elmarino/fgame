@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170325135551) do
+ActiveRecord::Schema.define(version: 20170326144410) do
 
   create_table "decks", force: :cascade do |t|
     t.string  "name"
@@ -20,11 +20,15 @@ ActiveRecord::Schema.define(version: 20170325135551) do
   end
 
   create_table "joueurs", force: :cascade do |t|
-    t.string  "name"
-    t.integer "attack"
-    t.integer "defense"
-    t.string  "speciality"
-    t.integer "deck_id"
+    t.string   "name"
+    t.integer  "attack"
+    t.integer  "defense"
+    t.string   "speciality"
+    t.integer  "deck_id"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
     t.index ["deck_id"], name: "index_joueurs_on_deck_id"
   end
 

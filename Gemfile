@@ -58,3 +58,9 @@ gem 'simple_form'
 #Gems pour gerer des utilisateur et les autorisations
 gem 'devise'
 gem 'cancancan'
+
+#Gem for avatar
+gem "paperclip", "~> 5.0.0"
+
+#Keep data to app
+gem 'seed_dump'

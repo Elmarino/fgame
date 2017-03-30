@@ -1,4 +1,11 @@
-<h1>Le joueur:<%= @joueur.name %></h1>
-
-<p>Caractéristiques:</p>
+<h1>Le joueur:<span class="blue"><%= @joueur.name %></span></h1>
+<div class="formulaire">
+	<div>
+		<%=  @joueur.avatar.exists? ? image_tag(@joueur.avatar.url(:medium)) : '&empty;'.html_safe %>
+	</div>
+	<p>Attack points: <%= @joueur.attack %></p>
+	<p>Defense points:<%= @joueur.defense %></p>
+	<p>Speciality: <%= @joueur.speciality %></p>
+	<p>Team: <%= @deckretour.name %></p>
+</div>
 <p><a href="/decks/<%= @deckretour.id %>">Retourner au deck</a></p>

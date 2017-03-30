@@ -1,0 +1,13 @@
+<div class="formulaire">
+	<%= simple_form_for @joueur do |f| %>
+	<%= f.input :name, required: true %>
+	<%= f.input :attack, required: true%>
+	<%= f.input :defense, required: true %>
+	<%= f.input :speciality, required: true%>
+	<%= f.association :deck, label:'Team',required: true%>
+	<%= f.input :avatar, as: :file %>
+	<br>
+	<%= f.button :submit %>
+	<br>
+	<% end %>
+</div>

@@ -1,11 +1,17 @@
 Rails.application.routes.draw do
-	root 'decks#index'
+
+
+	root 'home#index'
 
 	devise_for :users
 	post 'parties/show'
 	post 'parties/play'
 
+	get 'parties/show'
+	get 'parties/play'
+
 	#resources :parties, only: [:show]
+	resources :home
 	resources :decks, only: [:index, :show, :create]
 	resources :joueurs, only: [:index, :show, :edit, :update, :destroy, :update, :create]
 	#post 'joueurs/edit'

@@ -16,12 +16,15 @@
 //= require_tree .
 
 $(document).ready(function(){
-	var limit = 3;
-		$('.checkbox-player').on('change', function(evt) {
-		//alert(limit);
-		if($(this).siblings(':checked').length >= limit) {
-		   this.checked = false;
-		}
+	$('.test').change(function(){
+	    if($('input.test').filter(':checked').length == 5){
+	        $('input.test:not(:checked)').attr('disabled', 'disabled');
+	    	$("#play").fadeIn().css("display","block");
+	    }
+	    else{
+	        $('input.test').removeAttr('disabled');
+	    	$("#play").fadeOut();
+	    }
 	});
 
 	//Apparition Score du match
@@ -40,15 +43,32 @@ $(document).ready(function(){
 					duration: 3000,
 					easing:'swing',
 					step: function() {
-					  $this.text(Math.floor(this.countNum));
+						/*if (this.countNum<0) {
+							this.countNum=0;
+							$this.text(Math.floor(this.countNum));
+						} else{
+					  		$this.text(Math.floor(this.countNum));
+					  	}*/
+					  	$this.text(Math.floor(this.countNum));
 					},
 					complete: function() {
-					  $this.text(this.countNum);
-					  //alert('finished');
+						/*if (this.countNum<0) {
+							this.countNum=0;
+							$this.text(this.countNum);
+						} else{
+					  		$this.text(this.countNum);
+					  	}*/
+					  	$this.text(this.countNum);
+						//alert('finished');
 					}
 				});  
 			});
 		}, 600);
+		setTimeout(function(){
+			$(".win").css("display", "flex").hide().fadeIn();
+			window.scrollTo(0, 0);
+			$('body').css("overflow","hidden");
+		}, 5000);
 	});
 
 	//Apparition number of results for the game

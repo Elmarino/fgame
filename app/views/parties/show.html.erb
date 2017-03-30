@@ -1,21 +1,29 @@
-<h1>Préparation de votre deck</h1>
-<%=@deck_game.name%>
-<%@joueurs_game.each do |joueur|%>
-	<p>-<%= joueur.name %></p>
-<%end%>
-
-<h2>Selectionne tes joueurs</h2>
-
-<%= form_tag "/parties/play",class: 'checkbox-player', method: "post" do %>
-	<% @joueurs_game.each do |joueur| %>
-		<label>
-			<%=check_box_tag 'player_ids[]', joueur.id, false %>
-			<%=joueur.name%>
-		</label>
-		<br>
-	<% end %>
+<div class="formulaire">
+	<h1>Prepare your deck</h1>
+	<h3>There is the players of the:&nbsp;&nbsp;<span class="bigger blue"><%=@deck_game.name%></span></h3>
 	<br>
-	<input type="submit" value="Play !"/>
-<% end %>
+	<div class="list-deck">
+		<%@joueurs_game.each do |joueur|%>
+			<p class="player">-<%= joueur.name %></p>
+		<%end%>
+	</div>
+</div>
+
+<div class="formulaire">
+<h2>Select 5 players</h2>
+	<%= form_tag "/parties/play",class: 'checkbox-player', method: "post" do %>
+		<div class="list-deck">
+			<% @joueurs_game.each do |joueur| %>
+				<label class="player">
+					<%=check_box_tag 'player_ids[]', joueur.id, false, class: 'test' %>
+					<%=joueur.name%>
+				</label>
+				<br>
+			<% end %>
+		</div>
+		<br>
+		<input type="submit" value="Play !" id="play" />
+	<% end %>
+</div>
 
 <p>Conseil: La défense est utile, hein :)</p>

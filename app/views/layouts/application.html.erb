@@ -5,19 +5,23 @@
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <link href="https://fonts.googleapis.com/css?family=Fascinate+Inline|Varela+Round" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fascinate+Inline|Varela+Round|Montserrat" rel="stylesheet">
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <div class="bg"></div>
     <header>
         <div>
           <span class="menu">
+            <% #link_to image_tag("logo.png", size: "31x31", alt: "Home"), root_path %>
+            <%= link_to 'Home', root_path %>
+            <span>|</span>
             <% #link_to 'Play', 'decks#index' %>
-            <%= link_to 'Play', root_path %>
+            <%= link_to 'Play', decks_path %>
             <span>|</span>
-            <%= link_to 'Liste des Joueurs', 'joueurs#index' %>
-            <span>|</span>
+              <%= link_to 'Liste des Joueurs', joueurs_path %>
+              <span>|</span>
           </span>
           <span class="connecte">
             <% if user_signed_in? %>

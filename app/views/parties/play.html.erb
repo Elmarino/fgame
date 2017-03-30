@@ -1,13 +1,22 @@
-<h1 class="gtime">GAME TIME: </h1>
-<h2>
-	<span class="teams"><%=@deck_play.name%></span> 
+<% if @win%>
+	<div class="win" id="win">
+		<%= button_to "You win ! Play again !" , root_path, method: :get%>
+	</div>
+<% else %>
+	<div class="win" id="lose">
+		<%= button_to "You lose ! Retry !" , root_path, method: :get%>
+	</div>
+<% end %>
+<h1 class="gtime">SUNDAY'S NIGHT GAME !</h1>
+<h2 style="text-align: center;">
+	<span class="teams"><%=@deck_play[0].name%></span> 
 	<span class="vs">VS</span> 
-	<span class="teams"><%=@deck_against.name%></span>
+	<span class="teams"><%=@deck_against[0].name%></span>
 </h2>
 <div class="block-presentation">
 	<% @players_play.each do |joueur| %>
 		<div class="pres-players">
-			<p><%= joueur.name %></p>
+			<%=  joueur.avatar.exists? ? image_tag(joueur.avatar.url(:medium)) : '&empty;'.html_safe %>
 		</div>
 	<% end %>
 </div>
@@ -37,7 +46,7 @@
 <div class="block-presentation">
 	<% @players_against.each do |joueur| %>
 		<div class="pres-players">
-			<p><%= joueur.name %></p>
+			<%=  joueur.avatar.exists? ? image_tag(joueur.avatar.url(:medium)) : '&empty;'.html_safe %>
 		</div>
 	<% end %>
 </div>
